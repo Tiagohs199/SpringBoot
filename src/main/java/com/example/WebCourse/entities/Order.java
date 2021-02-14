@@ -85,9 +85,6 @@ public class Order implements Serializable {
 	public void setClient(User client) {
 		this.client = client;
 	}
-	public Set<OrderItem> getItens(){
-		return itens;
-	}
 	
 	public Payment getPayment() {
 		return payment;
@@ -95,6 +92,18 @@ public class Order implements Serializable {
 
 	public void setPayment(Payment payment) {
 		this.payment = payment;
+	}
+	
+	public Set<OrderItem> getItens(){
+		return itens;
+	}
+	
+	public Double getTotal() {
+		Double sum =0.0;
+		for (OrderItem x : itens) {
+			sum += x.getSubTotal(); 
+		}
+		return sum;
 	}
 
 	@Override
